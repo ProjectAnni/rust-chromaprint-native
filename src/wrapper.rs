@@ -90,7 +90,6 @@ pub fn version() -> &'static str {
     unsafe { CStr::from_ptr(chromaprint_get_version()).to_str().unwrap() }
 }
 
-// TODO: Error Handling
 // TODO: Encode Fingerprint
 // TODO: Decode Fingerprint
 
