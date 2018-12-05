@@ -13,17 +13,37 @@ fn get_version() {
 #[test]
 fn test_fingerprint() {
     let mut context = Context::new();
-    context.start(44100, 1);
+
     let file = load_audio_file(get_data_path("test_stereo_44100.raw"));
+    context.start(44100, 1);
     context.feed(&file);
     context.finish();
 
-    let fingerprint = assert_eq!(
+    assert_eq!(
         context.fingerprint(),
         "AQAAC0kkZUqYREkUnFAXHk8uuMZl6EfO4zu-4ABKFGESWIIMEQE"
     );
     assert_eq!(context.fingerprint_hash(), 3732003127);
     context.raw_fingerprint();
+}
+
+fn test_clear_fingerprint() {
+    let mut context = Context::new();
+    context.start(44100, 1);
+    let first_file = load_audio_file(get_data_path("test_mono_44100.raw"));
+
+    context.feed(&first_file);
+    context.finish();
+
+    let second_file = load_audio_file(get_data_path("test_stereo_44100.raw"));
+    context.clear_fingerprint();
+    context.feed(&second_file);
+    context.finish();
+
+    assert_eq!(
+        context.fingerprint(),
+        "AQAAC0kkZUqYREkUnFAXHk8uuMZl6EfO4zu-4ABKFGESWIIMEQE"
+    );
 }
 
 fn get_data_path(name: &str) -> PathBuf {
