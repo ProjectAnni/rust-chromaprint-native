@@ -43,6 +43,7 @@ impl Context {
         handle_return(unsafe { chromaprint_clear_fingerprint(self.c_ctx) })
     }
 
+    #[allow(dead_code)]
     fn raw_fingerprint_size(&mut self) -> Result<i32> {
         unsafe {
             let mut result = 0;

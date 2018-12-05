@@ -1,5 +1,8 @@
+#[allow(dead_code)]
 mod bindings;
 mod errors;
+
+#[cfg(test)]
 mod tests;
 mod wrapper;
 

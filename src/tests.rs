@@ -3,7 +3,8 @@ use std::fs::File;
 use std::io::Read;
 use std::mem;
 use std::path::{Path, PathBuf};
-use *;
+
+use wrapper::{hash_fingerprint, version, Context};
 
 #[test]
 fn get_version() {
