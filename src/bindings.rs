@@ -1,12 +1,12 @@
 pub type ChromaprintContext = ::std::os::raw::c_void;
 
-pub const CHROMAPRINT_ALGORITHM_CHROMAPRINT_ALGORITHM_TEST1: ChromaprintAlgorithm = 0;
-pub const CHROMAPRINT_ALGORITHM_CHROMAPRINT_ALGORITHM_TEST2: ChromaprintAlgorithm = 1;
-pub const CHROMAPRINT_ALGORITHM_CHROMAPRINT_ALGORITHM_TEST3: ChromaprintAlgorithm = 2;
-pub const CHROMAPRINT_ALGORITHM_CHROMAPRINT_ALGORITHM_TEST4: ChromaprintAlgorithm = 3;
-pub const CHROMAPRINT_ALGORITHM_CHROMAPRINT_ALGORITHM_TEST5: ChromaprintAlgorithm = 4;
-pub const CHROMAPRINT_ALGORITHM_CHROMAPRINT_ALGORITHM_DEFAULT: ChromaprintAlgorithm = 1;
-pub type ChromaprintAlgorithm = u32;
+pub const CHROMAPRINT_ALGORITHM_TEST1: ChromaprintAlgorithm = 0;
+pub const CHROMAPRINT_ALGORITHM_TEST2: ChromaprintAlgorithm = 1;
+pub const CHROMAPRINT_ALGORITHM_TEST3: ChromaprintAlgorithm = 2;
+pub const CHROMAPRINT_ALGORITHM_TEST4: ChromaprintAlgorithm = 3;
+pub const CHROMAPRINT_ALGORITHM_TEST5: ChromaprintAlgorithm = 4;
+pub const CHROMAPRINT_ALGORITHM_DEFAULT: ChromaprintAlgorithm = 1;
+pub type ChromaprintAlgorithm = ::std::os::raw::c_int;
 
 extern "C" {
     #[doc = " Return the version number of Chromaprint."]

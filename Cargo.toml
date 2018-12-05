@@ -3,9 +3,11 @@ name = "rust-chromaprint"
 version = "0.1.0"
 authors = ["Martin Charles <martincharles07@gmail.com>"]
 
+links = "chromaprint"
+build = "build.rs"
+
 [dependencies]
 libc = "0.2.0"
 
 [build-dependencies]
 cmake = "0.1.33"
-cc = "1.0.20"
