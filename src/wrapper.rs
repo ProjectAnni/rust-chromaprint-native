@@ -25,13 +25,11 @@ impl Context {
         unsafe { chromaprint_feed(self.c_ctx, data.as_ptr(), data.len() as i32) == 0 }
     }
 
-    fn finish(&mut self) -> bool {
+    pub fn finish(&mut self) -> bool {
         unsafe { chromaprint_finish(self.c_ctx) == 0 }
     }
 
     pub fn fingerprint(&mut self) -> String {
-        self.finish();
-
         unsafe {
             let mut result = ptr::null_mut::<c_char>();
             chromaprint_get_fingerprint(self.c_ctx, &mut result);

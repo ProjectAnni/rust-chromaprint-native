@@ -16,6 +16,7 @@ fn test_fingerprint() {
     context.start(44100, 1);
     let file = load_audio_file(get_data_path("test_stereo_44100.raw"));
     context.feed(&file);
+    context.finish();
 
     let fingerprint = context.fingerprint();
 
