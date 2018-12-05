@@ -27,6 +27,18 @@ fn test_fingerprint() {
     context.raw_fingerprint();
 }
 
+#[test]
+fn test_hash() {
+    let raw = [
+        3740390231, 3739276119, 3730871573, 3743460629, 3743525173, 3744594229, 3727948087,
+        1584920886, 1593302326, 1593295926, 1584907318,
+    ]
+        .to_vec();
+
+    assert_eq!(hash_fingerprint(&raw), 3732003127)
+}
+
+#[test]
 fn test_clear_fingerprint() {
     let mut context = Context::new();
     context.start(44100, 1);
@@ -34,9 +46,9 @@ fn test_clear_fingerprint() {
 
     context.feed(&first_file);
     context.finish();
+    context.clear_fingerprint();
 
     let second_file = load_audio_file(get_data_path("test_stereo_44100.raw"));
-    context.clear_fingerprint();
     context.feed(&second_file);
     context.finish();
 

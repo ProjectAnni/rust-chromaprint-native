@@ -71,11 +71,6 @@ impl Context {
     }
 }
 
-// TODO: Error Handling
-// TODO: Encode Fingerprint
-// TODO: Decode Fingerprint
-// TODO: Hash Fingerprint
-
 impl Drop for Context {
     fn drop(&mut self) {
         unsafe { chromaprint_free(self.c_ctx) }
@@ -84,4 +79,17 @@ impl Drop for Context {
 
 pub fn version() -> &'static str {
     unsafe { CStr::from_ptr(chromaprint_get_version()).to_str().unwrap() }
+}
+
+// TODO: Error Handling
+// TODO: Encode Fingerprint
+// TODO: Decode Fingerprint
+
+pub fn hash_fingerprint(fingerprint: &[u32]) -> u32 {
+    unsafe {
+        let mut result = 0u32;
+        chromaprint_hash_fingerprint(fingerprint.as_ptr(), fingerprint.len() as i32, &mut result);
+
+        result
+    }
 }
