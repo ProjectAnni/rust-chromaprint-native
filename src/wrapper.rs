@@ -90,9 +90,6 @@ pub fn version() -> &'static str {
     unsafe { CStr::from_ptr(chromaprint_get_version()).to_str().unwrap() }
 }
 
-// TODO: Encode Fingerprint
-// TODO: Decode Fingerprint
-
 pub fn hash_fingerprint(fingerprint: &[u32]) -> Result<u32> {
     unsafe {
         let mut result = 0u32;
