@@ -18,12 +18,12 @@ fn test_fingerprint() {
     context.feed(&file);
     context.finish();
 
-    let fingerprint = context.fingerprint();
-
-    assert_eq!(
-        fingerprint,
+    let fingerprint = assert_eq!(
+        context.fingerprint(),
         "AQAAC0kkZUqYREkUnFAXHk8uuMZl6EfO4zu-4ABKFGESWIIMEQE"
     );
+    assert_eq!(context.fingerprint_hash(), 3732003127);
+    context.raw_fingerprint();
 }
 
 fn get_data_path(name: &str) -> PathBuf {

@@ -37,7 +37,44 @@ impl Context {
             CString::from_raw(result).into_string().unwrap()
         }
     }
+
+    pub fn clear_fingerprint(&mut self) -> bool {
+        unsafe { chromaprint_clear_fingerprint(self.c_ctx) == 0 }
+    }
+
+    fn raw_fingerprint_size(&mut self) -> i32 {
+        unsafe {
+            let mut result = 0;
+            chromaprint_get_raw_fingerprint_size(self.c_ctx, &mut result);
+
+            result
+        }
+    }
+
+    pub fn raw_fingerprint(&mut self) -> Vec<u32> {
+        unsafe {
+            let mut size = 0;
+            let mut result = ptr::null_mut();
+            chromaprint_get_raw_fingerprint(self.c_ctx, &mut result, &mut size);
+
+            Vec::from_raw_parts(result, size as usize, size as usize)
+        }
+    }
+
+    pub fn fingerprint_hash(&mut self) -> u32 {
+        unsafe {
+            let mut result = 0u32;
+            chromaprint_get_fingerprint_hash(self.c_ctx, &mut result);
+
+            result
+        }
+    }
 }
+
+// TODO: Error Handling
+// TODO: Encode Fingerprint
+// TODO: Decode Fingerprint
+// TODO: Hash Fingerprint
 
 impl Drop for Context {
     fn drop(&mut self) {
