@@ -55,6 +55,7 @@ fn test_clear_fingerprint() -> Result<(), Box<dyn Error>> {
     context.clear_fingerprint()?;
 
     let second_file = load_audio_file(get_data_path("test_stereo_44100.raw"))?;
+    context.start(44100, 1)?;
     context.feed(&second_file)?;
     context.finish()?;
 

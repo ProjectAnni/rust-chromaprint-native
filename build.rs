@@ -10,5 +10,5 @@ fn main() {
     };
 
     println!("cargo:rustc-link-search=native={}", search);
-    println!("cargo:rustc-link-lib=static=chromaprint");
+    println!("cargo:rustc-link-lib=dylib=chromaprint");
 }
