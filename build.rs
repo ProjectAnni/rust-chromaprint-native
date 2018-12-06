@@ -9,6 +9,7 @@ fn main() {
         cmake::build("chromaprint").display().to_string() + "/lib"
     };
 
+    println!("cargo:rerun-if-changed=CHROMAPRINT_LIB_DIR");
     println!("cargo:rustc-link-search=native={}", search);
-    println!("cargo:rustc-link-lib=dylib=chromaprint");
+    println!("cargo:rustc-link-lib=chromaprint");
 }
