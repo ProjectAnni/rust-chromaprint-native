@@ -13,4 +13,9 @@ To use an already built version of chromaprint, specify the
 library in the specified folder will be used instead of building one at
 compile time.
 
+## Example
+
+There are some example in the [tests].
+
+[tests]: ./src/tests.rs
 [chromaprint]: https://acoustid.org/chromaprint
