@@ -1,3 +1,3 @@
 [submodule "chromaprint"]
 	path = chromaprint
-	url = https://github.com/acoustid/chromaprint.git
+	url = git@github.com:0xcaff/chromaprint.git
