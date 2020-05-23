@@ -6,7 +6,7 @@ A rust wrapper around the [AcoustID Chromaprint][chromaprint] C library.
 
 Just add the dependency. Chromaprint will be built at compile time.
 
-    chromaprint_native = { git = "https://github.com/0xcaff/rust-chromaprint" }
+    chromaprint_native = { git = "https://github.com/0xcaff/rust-chromaprint-native" }
 
 To use an already built version of chromaprint, specify the
 `CHROMAPRINT_LIB_DIR` environment variable at build time. When specified, the
