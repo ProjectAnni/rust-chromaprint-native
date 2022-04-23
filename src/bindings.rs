@@ -5,7 +5,8 @@ pub const CHROMAPRINT_ALGORITHM_TEST2: ChromaprintAlgorithm = 1;
 pub const CHROMAPRINT_ALGORITHM_TEST3: ChromaprintAlgorithm = 2;
 pub const CHROMAPRINT_ALGORITHM_TEST4: ChromaprintAlgorithm = 3;
 pub const CHROMAPRINT_ALGORITHM_TEST5: ChromaprintAlgorithm = 4;
-pub const CHROMAPRINT_ALGORITHM_DEFAULT: ChromaprintAlgorithm = 1;
+pub const CHROMAPRINT_ALGORITHM_DEFAULT: ChromaprintAlgorithm = CHROMAPRINT_ALGORITHM_TEST2;
+
 pub type ChromaprintAlgorithm = ::std::os::raw::c_int;
 
 extern "C" {

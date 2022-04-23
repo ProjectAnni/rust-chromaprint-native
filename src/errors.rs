@@ -16,9 +16,9 @@ impl fmt::Display for ChromaprintError {
 }
 
 pub fn handle_return(return_value: i32) -> Result<()> {
-    if return_value == 0 {
-        return Err(ChromaprintError);
+    return if return_value == 0 {
+        Err(ChromaprintError)
     } else {
-        return Ok(());
+        Ok(())
     }
 }

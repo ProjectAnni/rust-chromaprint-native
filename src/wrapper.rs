@@ -102,3 +102,55 @@ pub fn hash_fingerprint(fingerprint: &[u32]) -> Result<u32> {
         Ok(result)
     }
 }
+
+pub fn encode_fingerprint_buffer(fingerprint: &[u32], algorithm: i32) -> Result<Vec<u32>> {
+    let mut result = ptr::null_mut();
+    let mut result_size = 0;
+    unsafe {
+        handle_return(chromaprint_encode_fingerprint(
+            fingerprint.as_ptr(),
+            fingerprint.len() as i32,
+            algorithm,
+            &mut result,
+            &mut result_size,
+            0,
+        ))?;
+
+        Ok(Vec::from_raw_parts(result as *mut u32, result_size as usize, result_size as usize))
+    }
+}
+
+pub fn encode_fingerprint_base64(fingerprint: &[u32], algorithm: i32) -> Result<String> {
+    let mut result = ptr::null_mut();
+    let mut result_size = 0;
+    unsafe {
+        handle_return(chromaprint_encode_fingerprint(
+            fingerprint.as_ptr(),
+            fingerprint.len() as i32,
+            algorithm,
+            &mut result,
+            &mut result_size,
+            1,
+        ))?;
+
+        Ok(String::from_raw_parts(result as *mut u8, result_size as usize, result_size as usize))
+    }
+}
+
+pub fn decode_fingerprint(fingerprint: String) -> Result<(Vec<u32>, i32)> {
+    let mut result = ptr::null_mut();
+    let mut result_size = 0;
+    let mut algorithm = 0;
+    return unsafe {
+        handle_return(chromaprint_decode_fingerprint(
+            fingerprint.as_ptr() as *const c_char,
+            fingerprint.len() as i32,
+            &mut result,
+            &mut result_size,
+            &mut algorithm,
+            1,
+        ))?;
+        let fingerprint = Vec::from_raw_parts(result as *mut u32, result_size as usize, result_size as usize);
+        Ok((fingerprint, algorithm as i32))
+    };
+}
